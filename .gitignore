@@ -1,0 +1,19 @@
+# Visual Studio user-specific
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output
+[Bb]in/
+[Oo]bj/
+*.pdb
+*.exe
+*.dll
+*.manifest
+*.application
+
+# ClickOnce publish output (if you use it)
+app.publish/
+*.publish/
