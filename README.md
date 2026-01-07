@@ -8,17 +8,6 @@ This project was created to make it easier for Vortex Vitality customers (and th
 
 ---
 
-## What this does
-
-At a high level, this app acts as a **bridge** between Vprobe telemetry and Home Assistant:
-
-- Connects to a Vprobe data source (e.g., cloud MQTT endpoint and/or your local broker — depending on your setup)
-- Normalizes sensor payloads
-- Publishes into Home Assistant-friendly MQTT topics (optionally using MQTT Discovery)
-- Keeps entities updated (and re-announces configs when needed)
-
----
-
 ## Quick start
 
 ### 1) Prerequisites
@@ -64,11 +53,11 @@ At a high level, this app acts as a **bridge** between Vprobe telemetry and Home
 
 > Runtime: **.NET Framework 4.7.2+**
 
-### 3) How the Broker works
+### 4) How the Broker works
 
 This app is a **bridge** with three parts: (1) Vortex backend HTTP, (2) cloud MQTT (AWS IoT), (3) local MQTT (Home Assistant connects here).
 
-#### 3.1 App settings (`App.config`)
+#### 4.1 App settings (`App.config`)
 
 `Form1.cs` reads these from `appSettings`:
 
@@ -81,7 +70,7 @@ This app is a **bridge** with three parts: (1) Vortex backend HTTP, (2) cloud MQ
 - `AWS_IOT_ENDPOINT_HOST` + `AWS_AUTHORIZER`  
   Used to connect to AWS IoT via **MQTT over WebSockets** (TLS 1.2) using your `uuid` + `jwt`.
 
-#### 3.2 Local Home Assistant connection (LAN side)
+#### 4.2 Local Home Assistant connection (LAN side)
 
 When running, the app starts a **local MQTT broker**:
 - Binds to the selected IPv4
@@ -94,7 +83,7 @@ When it receives `homeassistant/status = online`, it:
 - republishes MQTT Discovery configs, and
 - ensures it’s connected to the cloud MQTT side and (re)subscribes to the selected device topics.
 
-#### 3.3 Cloud MQTT connection (AWS side)
+#### 4.3 Cloud MQTT connection (AWS side)
 
 After login, the app connects to AWS IoT using:
 - ClientId = `uuid`
@@ -113,7 +102,7 @@ State keys published (when present):
 - plus (only for SN ≥ 1000): `fertility`, `soilTemp`  
   (`soilTemp` is accepted from cloud as either `soilTemp` or legacy `soiltemp`)
 
-#### 3.4 Entities created in Home Assistant (MQTT Discovery)
+#### 4.4 Entities created in Home Assistant (MQTT Discovery)
 
 For every **linked** Vprobe SN, the Broker publishes retained discovery configs to topics like:
 - `homeassistant/sensor/VprobeSN{SN}{objectIdSuffix}/config`
