@@ -17,3 +17,6 @@
 # ClickOnce publish output (if you use it)
 app.publish/
 *.publish/
+
+#packages are installed via NuGet manager
+packages/
