@@ -21,7 +21,7 @@ This project was created to make it easier for Vortex Vitality customers (and th
 
 1. Clone this repository
 2. Open `MQTT Broker by Vortex Vitality.sln` in Visual Studio
-3. Restore NuGet packages (Right-click the Solution in `Solution Explorer` -> `Restore NuGet packages`)
+3. Restore NuGet packages (Right-click the Solution in `Solution Explorer → Restore NuGet packages`)
 4. Build and run
 
 ### 3) Using the App
